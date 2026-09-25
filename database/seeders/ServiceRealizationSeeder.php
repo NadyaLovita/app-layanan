@@ -42,15 +42,15 @@ class ServiceRealizationSeeder extends Seeder
         $tpstKelutanLocationId = $locationMap['TPST Kelutan Mandiri (TPS3R)'] ?? null;
 
         // Ambil plan yang sudah di-seed
-        $planYesterday = OperationPlan::where('plan_date', today()->subDay()->toDateString())
+        $planYesterday = OperationPlan::whereDate('plan_date', today()->subDay())
             ->where('vehicle_id', $vehicleMap['AG 8001 YP'] ?? null)
             ->first();
 
-        $planTodayRunning = OperationPlan::where('plan_date', today()->toDateString())
+        $planTodayRunning = OperationPlan::whereDate('plan_date', today())
             ->where('vehicle_id', $vehicleMap['AG 8003 YP'] ?? null)
             ->first();
 
-        $planTodayPlanned = OperationPlan::where('plan_date', today()->toDateString())
+        $planTodayPlanned = OperationPlan::whereDate('plan_date', today())
             ->where('vehicle_id', $vehicleMap['AG 8005 YP'] ?? null)
             ->first();
 
